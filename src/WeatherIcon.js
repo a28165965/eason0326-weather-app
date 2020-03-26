@@ -16,85 +16,64 @@ import { ReactComponent as NightSnowing } from "./images/night-snowing.svg";
 import { ReactComponent as NightFog } from "./images/night-fog.svg";
 
 const IconContainer = styled.div`
-	flex-basis: 30%;
+  flex-basis: 30%;
 
-	svg {
-		max-height: 110px;
-	}
+  svg {
+    max-height: 110px;
+  }
 `;
 
 const weatherTypes = {
-	isThunderstorm: [15, 16, 17, 18, 21, 22, 33, 34, 35, 36, 41],
-	isClear: [1],
-	isCloudyFog: [25, 26, 27, 28],
-	isCloudy: [2, 3, 4, 5, 6, 7],
-	isFog: [24],
-	isPartiallyClearWithRain: [
-		8,
-		9,
-		10,
-		11,
-		12,
-		13,
-		14,
-		19,
-		20,
-		29,
-		30,
-		31,
-		32,
-		38,
-		39
-	],
-	isSnowing: [23, 37, 42]
+  isThunderstorm: [15, 16, 17, 18, 21, 22, 33, 34, 35, 36, 41],
+  isClear: [1],
+  isCloudyFog: [25, 26, 27, 28],
+  isCloudy: [2, 3, 4, 5, 6, 7],
+  isFog: [24],
+  isPartiallyClearWithRain: [8, 9, 10, 11, 12, 13, 14, 19, 20, 29, 30, 31, 32, 38, 39],
+  isSnowing: [23, 37, 42]
 };
 
 const weatherIcons = {
-	day: {
-		isThunderstorm: <DayThunderstorm />,
-		isClear: <DayClear />,
-		isCloudyFog: <DayCloudyFog />,
-		isCloudy: <DayCloudy />,
-		isFog: <DayFog />,
-		isPartiallyClearWithRain: <DayPartiallyClearWithRain />,
-		isSnowing: <DaySnowing />
-	},
-	night: {
-		isThunderstorm: <NightThunderstorm />,
-		isClear: <NightClear />,
-		isCloudyFog: <NightCloudyFog />,
-		isCloudy: <NightCloudy />,
-		isFog: <NightFog />,
-		isPartiallyClearWithRain: <NightPartiallyClearWithRain />,
-		isSnowing: <NightSnowing />
-	}
+  day: {
+    isThunderstorm: <DayThunderstorm />,
+    isClear: <DayClear />,
+    isCloudyFog: <DayCloudyFog />,
+    isCloudy: <DayCloudy />,
+    isFog: <DayFog />,
+    isPartiallyClearWithRain: <DayPartiallyClearWithRain />,
+    isSnowing: <DaySnowing />
+  },
+  night: {
+    isThunderstorm: <NightThunderstorm />,
+    isClear: <NightClear />,
+    isCloudyFog: <NightCloudyFog />,
+    isCloudy: <NightCloudy />,
+    isFog: <NightFog />,
+    isPartiallyClearWithRain: <NightPartiallyClearWithRain />,
+    isSnowing: <NightSnowing />
+  }
 };
 
 const WeatherIcon = ({ currentWeatherCode, moment }) => {
-	const [currentWeatherIcon, setCurrentWeatherIcon] = useState("isClear");
+  const [currentWeatherIcon, setCurrentWeatherIcon] = useState("isClear");
 
-	useEffect(() => {
-		const weatherCode2Type = weatherCode => {
-			return Object.entries(weatherTypes).reduce(
-				(currentWeatherType, [weatherType, weatherCodes]) => {
-					if (weatherCodes.includes(Number(weatherCode))) {
-						return weatherType;
-					} else {
-						return currentWeatherType;
-					}
-				},
-				""
-			);
-		};
+  useEffect(() => {
+    const weatherCode2Type = weatherCode => {
+      return Object.entries(weatherTypes).reduce((currentWeatherType, [weatherType, weatherCodes]) => {
+        if (weatherCodes.includes(Number(weatherCode))) {
+          return weatherType;
+        } else {
+          return currentWeatherType;
+        }
+      }, "");
+    };
 
-		const currentWeatherIcon = weatherCode2Type(currentWeatherCode);
+    const currentWeatherIcon = weatherCode2Type(currentWeatherCode);
 
-		setCurrentWeatherIcon(currentWeatherIcon);
-	}, [currentWeatherCode]);
+    setCurrentWeatherIcon(currentWeatherIcon);
+  }, [currentWeatherCode]);
 
-	return (
-		<IconContainer>{weatherIcons[moment][currentWeatherIcon]}</IconContainer>
-	);
+  return <IconContainer>{weatherIcons[moment][currentWeatherIcon]}</IconContainer>;
 };
 
 export default WeatherIcon;
