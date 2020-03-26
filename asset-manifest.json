@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/eason0326-weather-app/static/css/main.663ea046.chunk.css",
+    "main.js": "/eason0326-weather-app/static/js/main.e94ee9d0.chunk.js",
+    "main.js.map": "/eason0326-weather-app/static/js/main.e94ee9d0.chunk.js.map",
+    "runtime-main.js": "/eason0326-weather-app/static/js/runtime-main.18b2c389.js",
+    "runtime-main.js.map": "/eason0326-weather-app/static/js/runtime-main.18b2c389.js.map",
+    "static/js/2.957968dc.chunk.js": "/eason0326-weather-app/static/js/2.957968dc.chunk.js",
+    "static/js/2.957968dc.chunk.js.map": "/eason0326-weather-app/static/js/2.957968dc.chunk.js.map",
+    "index.html": "/eason0326-weather-app/index.html",
+    "precache-manifest.9a2eeae238d01c989ed0251f89c780d6.js": "/eason0326-weather-app/precache-manifest.9a2eeae238d01c989ed0251f89c780d6.js",
+    "service-worker.js": "/eason0326-weather-app/service-worker.js",
+    "static/css/main.663ea046.chunk.css.map": "/eason0326-weather-app/static/css/main.663ea046.chunk.css.map",
+    "static/js/2.957968dc.chunk.js.LICENSE.txt": "/eason0326-weather-app/static/js/2.957968dc.chunk.js.LICENSE.txt",
+    "static/media/airFlow.981a9625.svg": "/eason0326-weather-app/static/media/airFlow.981a9625.svg",
+    "static/media/cog.7ca9fe14.svg": "/eason0326-weather-app/static/media/cog.7ca9fe14.svg",
+    "static/media/day-clear.19e2ef13.svg": "/eason0326-weather-app/static/media/day-clear.19e2ef13.svg",
+    "static/media/day-cloudy-fog.296112b1.svg": "/eason0326-weather-app/static/media/day-cloudy-fog.296112b1.svg",
+    "static/media/day-cloudy.5c66b134.svg": "/eason0326-weather-app/static/media/day-cloudy.5c66b134.svg",
+    "static/media/day-fog.4b1ec37a.svg": "/eason0326-weather-app/static/media/day-fog.4b1ec37a.svg",
+    "static/media/day-partially-clear-with-rain.51c7cd39.svg": "/eason0326-weather-app/static/media/day-partially-clear-with-rain.51c7cd39.svg",
+    "static/media/day-snowing.dd850924.svg": "/eason0326-weather-app/static/media/day-snowing.dd850924.svg",
+    "static/media/day-thunderstorm.32a450a8.svg": "/eason0326-weather-app/static/media/day-thunderstorm.32a450a8.svg",
+    "static/media/loading.bffa65e7.svg": "/eason0326-weather-app/static/media/loading.bffa65e7.svg",
+    "static/media/night-clear.a99547e9.svg": "/eason0326-weather-app/static/media/night-clear.a99547e9.svg",
+    "static/media/night-cloudy-fog.c78ef762.svg": "/eason0326-weather-app/static/media/night-cloudy-fog.c78ef762.svg",
+    "static/media/night-cloudy.3f253148.svg": "/eason0326-weather-app/static/media/night-cloudy.3f253148.svg",
+    "static/media/night-fog.2477d0a9.svg": "/eason0326-weather-app/static/media/night-fog.2477d0a9.svg",
+    "static/media/night-partially-clear-with-rain.3a37b82a.svg": "/eason0326-weather-app/static/media/night-partially-clear-with-rain.3a37b82a.svg",
+    "static/media/night-snowing.19cb9f62.svg": "/eason0326-weather-app/static/media/night-snowing.19cb9f62.svg",
+    "static/media/night-thunderstorm.5f007c77.svg": "/eason0326-weather-app/static/media/night-thunderstorm.5f007c77.svg",
+    "static/media/rain.881734c0.svg": "/eason0326-weather-app/static/media/rain.881734c0.svg",
+    "static/media/refresh.ed958a11.svg": "/eason0326-weather-app/static/media/refresh.ed958a11.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.18b2c389.js",
+    "static/js/2.957968dc.chunk.js",
+    "static/css/main.663ea046.chunk.css",
+    "static/js/main.e94ee9d0.chunk.js"
+  ]
+}
