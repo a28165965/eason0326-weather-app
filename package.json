@@ -2,7 +2,7 @@
   "name": "eason0326-weather-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://a28165965.github.io/eason0326-weather-app",
+  "homepage": "https://a28165965.github.io/eason0326-weather-app.github.io/",
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
