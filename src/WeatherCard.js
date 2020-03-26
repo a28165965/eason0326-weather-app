@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "@emotion/styled";
-import WeatherIcon from "./WeatherIcon.js";
-import { ReactComponent as AirFlowIcon } from "./images/airFlow.svg";
-import { ReactComponent as RainIcon } from "./images/rain.svg";
-import { ReactComponent as RefreshIcon } from "./images/refresh.svg";
-import { ReactComponent as LoadingIcon } from "./images/loading.svg";
-import { ReactComponent as CogIcon } from "./images/cog.svg";
+import React from 'react'
+import styled from '@emotion/styled'
+import WeatherIcon from './WeatherIcon.js'
+import { ReactComponent as AirFlowIcon } from './images/airFlow.svg'
+import { ReactComponent as RainIcon } from './images/rain.svg'
+import { ReactComponent as RefreshIcon } from './images/refresh.svg'
+import { ReactComponent as LoadingIcon } from './images/loading.svg'
+import { ReactComponent as CogIcon } from './images/cog.svg'
 
 const WeatherCardWrapper = styled.div`
   position: relative;
@@ -14,38 +14,38 @@ const WeatherCardWrapper = styled.div`
   background-color: ${({ theme }) => theme.foregroundColor};
   box-sizing: border-box;
   padding: 30px 15px;
-`;
+`
 
 const Location = styled.div`
   font-size: 28px;
   color: ${({ theme }) => theme.titleColor};
   margin-bottom: 20px;
-`;
+`
 
 const Description = styled.div`
   font-size: 16px;
   color: ${({ theme }) => theme.textColor};
   margin-bottom: 30px;
-`;
+`
 
 const CurrentWeather = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
-`;
+`
 
 const Temperature = styled.div`
   color: ${({ theme }) => theme.temperatureColor};
   font-size: 96px;
   font-weight: 300;
   display: flex;
-`;
+`
 
 const Celsius = styled.div`
   font-weight: normal;
   font-size: 42px;
-`;
+`
 
 const AirFlow = styled.div`
   display: flex;
@@ -60,7 +60,7 @@ const AirFlow = styled.div`
     height: auto;
     margin-right: 30px;
   }
-`;
+`
 
 const Rain = styled.div`
   display: flex;
@@ -74,7 +74,7 @@ const Rain = styled.div`
     height: auto;
     margin-right: 30px;
   }
-`;
+`
 
 const Refresh = styled.div`
   position: absolute;
@@ -91,7 +91,7 @@ const Refresh = styled.div`
     height: 15px;
     cursor: pointer;
     animation: rotate infinite 1.5s linear;
-    animation-duration: ${({ isLoading }) => (isLoading ? "1.5s" : "0s")};
+    animation-duration: ${({ isLoading }) => (isLoading ? '1.5s' : '0s')};
   }
   @keyframes rotate {
     from {
@@ -101,7 +101,7 @@ const Refresh = styled.div`
       transform: rotate(0deg);
     }
   }
-`;
+`
 
 const Cog = styled(CogIcon)`
   position: absolute;
@@ -110,10 +110,10 @@ const Cog = styled(CogIcon)`
   width: 15px;
   height: 15px;
   cursor: pointer;
-`;
+`
 
-const WeatherCard = props => {
-  const { weatherElement, moment, fetchData, setCurrentPage, cityName } = props;
+const WeatherCard = (props) => {
+  const { weatherElement, moment, fetchData, setCurrentPage, cityName } = props
 
   const {
     observationTime,
@@ -123,12 +123,12 @@ const WeatherCard = props => {
     weatherCode,
     rainPossibility,
     comfortability,
-    isLoading
-  } = weatherElement;
+    isLoading,
+  } = weatherElement
 
   return (
     <WeatherCardWrapper>
-      <Cog onClick={() => setCurrentPage("WeatherSetting")} />
+      <Cog onClick={() => setCurrentPage('WeatherSetting')} />
       <Location>{cityName}</Location>
       <Description>
         {description} {comfortability}
@@ -137,7 +137,10 @@ const WeatherCard = props => {
         <Temperature>
           {Math.round(temperature)} <Celsius>°C</Celsius>
         </Temperature>
-        <WeatherIcon currentWeatherCode={weatherCode} moment={moment || "day"} />
+        <WeatherIcon
+          currentWeatherCode={weatherCode}
+          moment={moment || 'day'}
+        />
       </CurrentWeather>
       <AirFlow>
         <AirFlowIcon />
@@ -149,14 +152,14 @@ const WeatherCard = props => {
       </Rain>
       <Refresh onClick={fetchData} isLoading={isLoading}>
         最後觀測時間：
-        {new Intl.DateTimeFormat("zh-TW", {
-          hour: "numeric",
-          minute: "numeric"
-        }).format(new Date(observationTime))}{" "}
+        {new Intl.DateTimeFormat('zh-TW', {
+          hour: 'numeric',
+          minute: 'numeric',
+        }).format(new Date(observationTime))}{' '}
         {isLoading ? <LoadingIcon /> : <RefreshIcon />}
       </Refresh>
     </WeatherCardWrapper>
-  );
-};
+  )
+}
 
-export default WeatherCard;
+export default WeatherCard

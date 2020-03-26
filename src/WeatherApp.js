@@ -1,31 +1,32 @@
 // STEP 1：從 react 中載入 useCallback
-import React, { useState, useEffect, useMemo } from "react";
-import styled from "@emotion/styled";
-import sunriseAndSunsetData from "./sunrise-sunset.json";
-import { ThemeProvider } from "emotion-theming";
-import WeatherCard from "./WeatherCard";
-import useWeatherApi from "./useWeatherApi";
-import WheatherSetting from "./WeatherSetting";
-import { findLocation } from "./utils";
+import React, { useState, useEffect, useMemo } from 'react'
+import styled from '@emotion/styled'
+import sunriseAndSunsetData from './sunrise-sunset.json'
+import { ThemeProvider } from 'emotion-theming'
+import WeatherCard from './WeatherCard'
+import useWeatherApi from './useWeatherApi'
+import WheatherSetting from './WeatherSetting'
+import { findLocation } from './utils'
 
 const theme = {
   light: {
-    backgroundColor: "#ededed",
-    foregroundColor: "#f9f9f9",
-    boxShadow: "0 1px 3px 0 #999999",
-    titleColor: "#212121",
-    temperatureColor: "#757575",
-    textColor: "#828282"
+    backgroundColor: '#ededed',
+    foregroundColor: '#f9f9f9',
+    boxShadow: '0 1px 3px 0 #999999',
+    titleColor: '#212121',
+    temperatureColor: '#757575',
+    textColor: '#828282',
   },
   dark: {
-    backgroundColor: "#1F2022",
-    foregroundColor: "#121416",
-    boxShadow: "0 1px 4px 0 rgba(12, 12, 13, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.15)",
-    titleColor: "#f9f9fa",
-    temperatureColor: "#dddddd",
-    textColor: "#cccccc"
-  }
-};
+    backgroundColor: '#1F2022',
+    foregroundColor: '#121416',
+    boxShadow:
+      '0 1px 4px 0 rgba(12, 12, 13, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.15)',
+    titleColor: '#f9f9fa',
+    temperatureColor: '#dddddd',
+    textColor: '#cccccc',
+  },
+}
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.backgroundColor};
@@ -33,52 +34,69 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
+`
 
-const getMoment = locationName => {
-  const location = sunriseAndSunsetData.find(data => data.locationName === locationName);
+const getMoment = (locationName) => {
+  const location = sunriseAndSunsetData.find(
+    (data) => data.locationName === locationName
+  )
 
-  if (!location) return null;
+  if (!location) return null
 
-  const now = new Date();
-  const nowDate = Intl.DateTimeFormat("zh-TW", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit"
+  const now = new Date()
+  const nowDate = Intl.DateTimeFormat('zh-TW', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
   })
     .format(now)
-    .replace(/\//g, "-");
+    .replace(/\//g, '-')
 
-  const locationDate = location.time && location.time.find(time => time.dataTime === nowDate);
+  const locationDate =
+    location.time && location.time.find((time) => time.dataTime === nowDate)
 
-  const sunriseTimestamp = new Date(`${locationDate.dataTime} ${locationDate.sunrise}`).getTime();
-  const sunsetTimestamp = new Date(`${locationDate.dataTime} ${locationDate.sunset}`).getTime();
-  const nowTimeStamp = now.getTime();
+  const sunriseTimestamp = new Date(
+    `${locationDate.dataTime} ${locationDate.sunrise}`
+  ).getTime()
+  const sunsetTimestamp = new Date(
+    `${locationDate.dataTime} ${locationDate.sunset}`
+  ).getTime()
+  const nowTimeStamp = now.getTime()
 
-  return sunriseTimestamp <= nowTimeStamp && nowTimeStamp <= sunsetTimestamp ? "day" : "night";
-};
+  return sunriseTimestamp <= nowTimeStamp && nowTimeStamp <= sunsetTimestamp
+    ? 'day'
+    : 'night'
+}
 
 const WeatherApp = () => {
-  const [currentCity, setCurrentCity] = useState("臺北市");
+  const storageCity = localStorage.getItem('cityName')
 
-  const currentLocation = findLocation(currentCity) || {};
+  const [currentCity, setCurrentCity] = useState(storageCity || '臺北市')
 
-  const [weatherElement, fetchData] = useWeatherApi(currentLocation);
+  const currentLocation = findLocation(currentCity) || {}
 
-  const [currentTheme, setCurrentTheme] = useState("light");
+  const [weatherElement, fetchData] = useWeatherApi(currentLocation)
 
-  const [currentPage, setCurrentPage] = useState("WeatherCard");
+  const [currentTheme, setCurrentTheme] = useState('light')
 
-  const moment = useMemo(() => getMoment(currentLocation.sunriseCityName), [currentLocation.sunriseCityName]);
+  const [currentPage, setCurrentPage] = useState('WeatherCard')
+
+  const moment = useMemo(() => getMoment(currentLocation.sunriseCityName), [
+    currentLocation.sunriseCityName,
+  ])
 
   useEffect(() => {
-    setCurrentTheme(moment === "day" ? "light" : "dark");
-  }, [moment]);
+    setCurrentTheme(moment === 'day' ? 'light' : 'dark')
+  }, [moment])
+
+  useEffect(() => {
+    localStorage.setItem('cityName', currentCity)
+  }, [currentCity])
 
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <Container>
-        {currentPage === "WeatherCard" && (
+        {currentPage === 'WeatherCard' && (
           <WeatherCard
             cityName={currentLocation.cityName}
             weatherElement={weatherElement}
@@ -87,7 +105,7 @@ const WeatherApp = () => {
             setCurrentPage={setCurrentPage}
           />
         )}
-        {currentPage === "WeatherSetting" && (
+        {currentPage === 'WeatherSetting' && (
           <WheatherSetting
             setCurrentPage={setCurrentPage}
             cityName={currentLocation.cityName}
@@ -96,7 +114,7 @@ const WeatherApp = () => {
         )}
       </Container>
     </ThemeProvider>
-  );
-};
+  )
+}
 
-export default WeatherApp;
+export default WeatherApp
